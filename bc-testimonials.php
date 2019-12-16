@@ -88,7 +88,7 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
             <div class="swiper-slide-container">
                 <div class="swiper-slide-content">
                     <div class="d-none d-md-block">
-                        <img src="<?php echo $image;?>" class="rounded-circle img-responsive" style="width:100px;height: 100px;">
+                        <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
                     </div>
                     <div><p><?php echo $message;?></p></div>
                     <div class="mt-2 d-none d-md-block">
