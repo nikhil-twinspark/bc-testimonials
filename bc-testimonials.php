@@ -52,23 +52,39 @@ function bc_testimonil_include_css_js($hook){
 
 
 add_shortcode( 'bc-testimonial', 'bc_testimonial_shortcode' );
-function bc_testimonial_shortcode ( $atts ) {
+function bc_testimonial_shortcode ( $atts , $content = null) {
+    static $count = 0;
+    $count++;
+    add_action( 'wp_footer' , function() use($count){
+    ?>
+        <script>
+        var testimonialSwiper<?php echo $count ?> = new Swiper('#bc_testimonial_swiper_<?php echo $count ?>', {
+            pagination: false,
+            navigation: {
+                nextEl: '.bc_testimonial_swiper_next',
+                prevEl: '.bc_testimonial_swiper_prev',
+            },
+        });
+        </script>
+    <?php });
     $Ids = null;
     $args  = array( 'post_type' => 'bc_testimonials', 'posts_per_page' => -1, 'order'=> 'ASC','post_status'  => 'publish');
     if(isset($atts['id'])) {
         $Ids = explode(',', $atts['id']);
         $postIds = $Ids;
         $args['post__in'] = $postIds;
-    }
-    
-    $query = new WP_Query( $args );
-    if ( $query->have_posts() ) :
-        while($query->have_posts()) : $query->the_post();
-    $title = get_post_meta( get_the_ID(), 'testimonial_title', true );
-    $message = get_post_meta( get_the_ID(), 'testimonial_message', true );
-    $image = get_post_meta( get_the_ID(), 'testimonial_custom_image', true );
-    ?>
-        <div class="swiper-slide"> 
+    } ?>
+<div id="bc_testimonial_swiper_<?php echo $count;?>" class="bc_testimonial_swiper swiper-container">
+    <div class="swiper-wrapper text-center">
+        <?php
+        $query = new WP_Query( $args );
+        if ( $query->have_posts() ) :
+            while($query->have_posts()) : $query->the_post();
+        $title = get_post_meta( get_the_ID(), 'testimonial_title', true );
+        $message = get_post_meta( get_the_ID(), 'testimonial_message', true );
+        $image = get_post_meta( get_the_ID(), 'testimonial_custom_image', true );
+        ?>
+        <div class="swiper-slide">
             <div class="swiper-slide-container">
                 <div class="swiper-slide-content">
                     <div class="d-none d-md-block">
@@ -78,14 +94,19 @@ function bc_testimonial_shortcode ( $atts ) {
                     <div class="mt-2 d-none d-md-block">
                         <span class="bc_alternate_font_blue m-0 bc_text_18">- <?php the_title(); ?></span>
                         <p class="m-0"><?php echo $title;?></p>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
-    <?php
-        endwhile; 
-        wp_reset_query();
-    endif;
+        <?php
+            endwhile; 
+            wp_reset_query();
+        endif;?>
+    </div>
+    <div class="bc_testimonial_swiper_next swiper-button-next d-none d-lg-block"><em class="fa fa-chevron-circle-right"></em></div>
+    <div class="bc_testimonial_swiper_prev swiper-button-prev d-none d-lg-block"><em class="fa fa-chevron-circle-left"></em></div>
+</div>
+<?php 
 }
 
 /** ADMIN COLUMN - HEADERS*/
