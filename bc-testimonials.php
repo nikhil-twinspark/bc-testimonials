@@ -68,7 +68,7 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
         </script>
     <?php });
     $Ids = null;
-    $args  = array( 'post_type' => 'bc_testimonials', 'posts_per_page' => -1, 'order'=> 'ASC','post_status'  => 'publish');
+    $args  = array( 'post_type' => 'bc_testimonials', 'posts_per_page' => -1, 'order'=> 'DESC','post_status'  => 'publish');
     if(isset($atts['id'])) {
         $Ids = explode(',', $atts['id']);
         $postIds = $Ids;
@@ -131,4 +131,17 @@ function manage_testimonials_columns($column_name, $id) {
         default:
             break;
     } // end switch
+}
+
+
+// Admin notice for displaying shortcode on index page
+add_action('admin_notices', 'bc_testimonials_general_admin_notice');
+function bc_testimonials_general_admin_notice(){
+    global $pagenow;
+    global $post;
+    if ($pagenow == 'edit.php' &&  (isset($post->post_type) ? $post->post_type : null) == 'bc_testimonials') { 
+     echo '<div class="notice notice-success is-dismissible">
+            <p>Shortcode [bc-testimonial]</p>
+         </div>';
+    }
 }

@@ -23,32 +23,32 @@ $image = get_post_meta( $post->ID, 'testimonial_custom_image', true );
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="testimonial_name" id="testimonial_name" value="<?= $name?>">
+      <input type="text" class="form-control" name="testimonial_name" id="testimonial_name" value="<?= $name?>" required>
     </div>
     <label class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="testimonial_title" id="testimonial_title" value="<?= $title?>">
+      <input type="text" class="form-control" name="testimonial_title" id="testimonial_title" value="<?= $title?>" required>
     </div>
   </div>
 
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Testimonial</label>
     <div class="col-sm-10">
-      <textarea rows="6" name="testimonial_message" class="form-control"><?= $message?></textarea>
+      <textarea rows="6" name="testimonial_message" class="form-control" required><?= $message?></textarea>
     </div>
   </div>
 
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Photo<br/>(optional)<br/>150*150.jpg</label>
     <div class="col-sm-10">
-        <input type="text" name="testimonial_custom_image" id="" class="meta-image" value="<?= $image;?>">
+        <input type="text" name="testimonial_custom_image" id="" class="meta-image" value="<?= $image;?>" required accept='image/*'>
         <input type="button" class="button bc-testimonial-image-upload" value="Upload">
 
         <div class="image-preview">
             <?php if(isset($image) && !empty($image)){?>
             <img src="<?php echo $image;?>" class="rounded-circle" style="width: 90px; height: 90px;">
             <?php }else{?>
-            <img src="http://placehold.it/300x300" class="rounded-circle" style="width: 90px; height: 90px;"/>
+            <img src="http://placehold.it/150x150" class="rounded-circle" style="width: 90px; height: 90px;"/>
             <?php }?>
         </div>
     </div>
