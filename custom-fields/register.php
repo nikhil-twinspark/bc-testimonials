@@ -41,10 +41,10 @@ $image = get_post_meta( $post->ID, 'testimonial_custom_image', true );
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Photo<br/>(optional)<br/>150*150.jpg</label>
     <div class="col-sm-10">
-        <input type="text" name="testimonial_custom_image" id="" class="meta-image" value="<?= $image;?>" required accept='image/*'>
-        <input type="button" class="button bc-testimonial-image-upload" value="Upload">
+        <input type="text" name="testimonial_custom_image" id="" class="meta-image col-sm-2" value="<?= $image;?>" required accept='image/*' style="margin-top: 40px;">
+        <input type="button" class="button bc-testimonial-image-upload col-sm-3" value="Upload" style="margin-top: 40px;">
 
-        <div class="image-preview">
+        <div class="image-preview col-sm-3" style="float: right;margin-right: 30%;">
             <?php if(isset($image) && !empty($image)){?>
             <img src="<?php echo $image;?>" class="rounded-circle" style="width: 90px; height: 90px;">
             <?php }else{?>
