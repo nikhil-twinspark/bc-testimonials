@@ -141,7 +141,7 @@ function bc_testimonials_general_admin_notice(){
     global $post;
     if ($pagenow == 'edit.php' &&  (isset($post->post_type) ? $post->post_type : null) == 'bc_testimonials') { 
      echo '<div class="notice notice-success is-dismissible">
-            <p>Shortcode [bc-testimonial]</p>
+            <p><b>Shortcode Example</b> All : [bc-testimonial] Specific : [bc-testimonial id="1,2,3"]</p>
          </div>';
     }
 }
