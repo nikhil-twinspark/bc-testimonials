@@ -16,6 +16,7 @@ function bc_testimonial_register_testimonial_type() {
         'menu_icon' => 'dashicons-format-quote',
         'supports' => false,
         'show_in_rest' => true,
+        'publicly_queryable' => false,
     );
     register_post_type( 'bc_testimonials', $args );
 }
