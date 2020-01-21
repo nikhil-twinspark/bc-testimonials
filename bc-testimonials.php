@@ -73,7 +73,12 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
         $Ids = explode(',', $atts['id']);
         $postIds = $Ids;
         $args['post__in'] = $postIds;
-    } ?>
+    } 
+    ob_start();
+    ?>
+<div class="container-fluid bc_testimonials_container bc_home_section_bg py-5  text-center" style="background-image:url('<?php echo get_template_directory_uri();?>/img/testimonial_bg.png'); background-position:center;">
+    <div class="text-center"><h2 class="bc_font_alt_1 pb-4 text-capitalize">Testimonials</h2></div>
+    <div class="container">
 <div id="bc_testimonial_swiper_<?php echo $count;?>" class="bc_testimonial_swiper swiper-container">
     <div class="swiper-wrapper text-center">
         <?php
@@ -106,7 +111,14 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
     <div class="bc_testimonial_swiper_next swiper-button-next d-none d-lg-block"><em class="fa fa-chevron-circle-right"></em></div>
     <div class="bc_testimonial_swiper_prev swiper-button-prev d-none d-lg-block"><em class="fa fa-chevron-circle-left"></em></div>
 </div>
+ </div>
+    <br>
+    <button class="btn bc_color_primary_bg mt-2 mb-2 px-4 text-white " type="button">Read Testimonials</button>
+    <br>
+</div>
 <?php 
+$output = ob_get_clean();
+return $output;
 }
 
 /** ADMIN COLUMN - HEADERS*/
