@@ -25,7 +25,7 @@ $image = get_post_meta( $post->ID, 'testimonial_custom_image', true );
     <div class="col-sm-4">
       <input type="text" class="form-control" name="testimonial_name" id="testimonial_name" value="<?= $name?>" required>
     </div>
-    <label class="col-sm-2 col-form-label">Title</label>
+    <label class="col-sm-2 col-form-label">Title/Role</label>
     <div class="col-sm-4">
       <input type="text" class="form-control" name="testimonial_title" id="testimonial_title" value="<?= $title?>" required>
     </div>
