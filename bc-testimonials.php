@@ -95,7 +95,17 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
                     <div class="d-none d-md-block">
                         <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
                     </div>
-                    <div><p><?php echo $message;?></p></div>
+                    <div>
+                        <p>
+                        <?php 
+                        if (strlen($message) > 210){
+                            echo $message = substr($message, 0, 210) . '...';
+                        }else{
+                            echo $message;
+                        }
+                        ?>
+                        </p>
+                    </div>
                     <div class="mt-2 d-none d-md-block">
                         <span class="bc_alternate_font_blue m-0 bc_text_18">- <?php the_title(); ?></span>
                         <p class="m-0"><?php echo $title;?></p>
