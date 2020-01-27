@@ -76,6 +76,22 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
     } 
     ob_start();
     ?>
+<style type="text/css">
+.circular--landscape {
+  display: inline-block;
+  position: relative;
+  width: 25%;
+  height: 25%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circular--landscape img {
+  width: auto;
+  height: 100%;
+  margin-left: -50px;
+}
+</style>
 <div class="container-fluid bc_testimonials_container bc_home_section_bg py-5  text-center" style="background-image:url('<?php echo get_template_directory_uri();?>/img/testimonial_bg.png'); background-position:center;">
     <div class="text-center"><h2 class="bc_font_alt_1 pb-4 text-capitalize">Testimonials</h2></div>
     <div class="container">
@@ -92,9 +108,14 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
         <div class="swiper-slide">
             <div class="swiper-slide-container">
                 <div class="swiper-slide-content">
-                    <div class="d-none d-md-block">
-                        <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
+
+                    <div class="circular--landscape d-none d-md-block">
+                      <img src="http://localhost/bluecorona/wp-content/uploads/2019/11/landingpage_banner.jpg" />
+                      <!-- <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" /> -->
                     </div>
+                    <!-- <div class="d-none d-md-block">
+                        <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
+                    </div> -->
                     <div>
                         <p>
                         <?php 
@@ -138,7 +159,8 @@ function add_new_testimonials_columns($columns) {
                 'cb' => $columns['cb'],
                 'title' => $columns['title'],
                 'name' => __('From'),
-                'date' => 'Date',
+                'updated' => __('Updated'),
+                'date' => 'Status',
             ); 
 }
 
@@ -149,6 +171,10 @@ function manage_testimonials_columns($column_name, $id) {
     switch ($column_name) {
         case 'name':
             echo get_post_meta( $post->ID , 'testimonial_title' , true );
+            break;
+        case 'updated':
+            $updated_day = get_the_modified_time('m/d/Y');
+            echo $updated_day;
             break;
         default:
             break;
