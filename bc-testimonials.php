@@ -78,10 +78,10 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
     ?>
 <style type="text/css">
 .circular--landscape {
-  display: inline-block;
+  display: inline-block !important;
   position: relative;
-  width: 25%;
-  height: 25%;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -89,7 +89,7 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
 .circular--landscape img {
   width: auto;
   height: 100%;
-  margin-left: -50px;
+  margin-left: 0px;
 }
 </style>
 <div class="container-fluid bc_testimonials_container bc_home_section_bg py-5  text-center" style="background-image:url('<?php echo get_template_directory_uri();?>/img/testimonial_bg.png'); background-position:center;">
@@ -110,17 +110,16 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
                 <div class="swiper-slide-content">
 
                     <div class="circular--landscape d-none d-md-block">
-                      <img src="http://localhost/bluecorona/wp-content/uploads/2019/11/landingpage_banner.jpg" />
-                      <!-- <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" /> -->
-                    </div>
+                      <img src="<?php echo $image;?>" /> 
+                    </div> 
                     <!-- <div class="d-none d-md-block">
                         <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
-                    </div> -->
+                    </div>  -->
                     <div>
                         <p>
                         <?php 
-                        if (strlen($message) > 210){
-                            echo $message = substr($message, 0, 210) . '...';
+                        if (strlen($message) > 165){
+                            echo $message = substr($message, 0, 165) . '...';
                         }else{
                             echo $message;
                         }
