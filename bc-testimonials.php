@@ -91,6 +91,13 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
   height: 100%;
   margin-left: 0px;
 }
+@media only screen and (max-width: 600px) {
+    .bc_moblie_p{
+        font-size:16px;
+        line-height:30px;
+        font-weight:400;
+    }
+} 
 </style>
 <div class="container-fluid bc_testimonials_container bc_home_section_bg py-5  text-center" style="background-image:url('<?php echo get_template_directory_uri();?>/img/testimonial_bg.png'); background-position:center;">
     <div class="text-center"><h2 class="bc_font_alt_1 pb-4 text-capitalize">Testimonials</h2></div>
@@ -116,10 +123,11 @@ function bc_testimonial_shortcode ( $atts , $content = null) {
                         <img src="<?php echo $image;?>" class="w-25 rounded-circle img-responsive" />
                     </div>  -->
                     <div>
-                        <p>
+                        <p class="bc_moblie_p">
                         <?php 
                         if (strlen($message) > 165){
-                            echo $message = substr($message, 0, 165) . '...';
+                            $message = substr($message, 0, 165) . '...';
+                            echo $message; 
                         }else{
                             echo $message;
                         }
